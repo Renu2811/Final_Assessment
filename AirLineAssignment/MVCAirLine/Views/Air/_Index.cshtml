@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MVCAirLine.Models.AirViewModel>
+
+
+    <div style="background-color:rosybrown"/>
+
+     
+    <a style="color:darkgreen;" asp-action="Create"><strong>Create New AirLine</strong></a>
+
+
+<form asp-action="Search">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-7">
+            <input type="search" name="searchString" class="form-control"/>
+        </div>
+        <div class="col-md-1">
+            <input type="submit" value="Search" class="btn btn-outline-warning"/>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</form>
+<br />
+
+<div class="row">
+    @foreach(var item in Model)
+    {
+    <div class="col-md-3 "style="padding-bottom:30px">
+        
+        <p><img class="cen"src="/AirLinesImg/@item.AirLineImage" width="200px" height="200px" />
+        
+         <div class="row">
+         <div class="col-sm-12">
+         <h5  style="color:black">AirLine Name:@item.AirLineName</h5> <br/>
+         <h5  style="color:black">From City: @item.FromCity</h5><br/>
+        <h5 style="color:black">To City: @item.ToCity</h5><br/>
+        <h5 style="color:black">Fare: @item.Fare</h5><br/></div></div></p>
+
+
+        <a asp-action="Edit" asp-route-id="@item.AirLineId" class="btn btn-primary" >Edit </a>|
+      <br/>
+
+      <br/>
+
+<header>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("p").click(function(){
+    alert("Are you Sure?");
+  });
+});
+</script>
+</header>
+<body>
+
+<p>
+     <a asp-action="Delete" asp-route-id="@item.AirLineId" class="btn btn-danger" >Delete</a>
+</p>
+
+
+</body>
+
+</div>
+
+}
+
+</div>
+ 

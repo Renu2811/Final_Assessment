@@ -1,0 +1,58 @@
+﻿@model MVCAirLine.Models.AirViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="background-color:rosybrown"/>
+
+
+<h1>Create</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AirLineName" class="control-label"></label>
+                <input asp-for="AirLineName" class="form-control" />
+                <span asp-validation-for="AirLineName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FromCity" class="control-label"></label>
+                <input asp-for="FromCity" class="form-control" />
+                <span asp-validation-for="FromCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToCity" class="control-label"></label>
+                <input asp-for="ToCity" class="form-control" />
+                <span asp-validation-for="ToCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fare" class="control-label"></label>
+                <input asp-for="Fare" class="form-control" />
+                <span asp-validation-for="Fare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirLineImage" class="control-label"></label>
+                <input type="file" asp-for="AirLineImage" class="form-control" />
+                <span asp-validation-for="AirLineImage" class="text-danger"></span>
+                
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" asp-action="CreateAirLines" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

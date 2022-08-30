@@ -1,0 +1,98 @@
+﻿@model IEnumerable<MVCAirLine.Models.AdminPage>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PanNo)
+            </th>
+           @* <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConfirmPassword)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PanNo)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConfirmPassword)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                
+            <button id="Approve" class="btn btn-success"asp-route-id="@item.Id" data-id=@item.Id>Approve</button>
+            <button id="reject" class="btn btn-danger"asp-route-id="@item.Id" data-id=@item.Id>Reject</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#Approve").click(function() {
+            var d = ($(this).attr("data-id"));
+            $.ajax({
+                type: "POST",
+                url: "/Register/ForApproval",
+                data: { "id": d},
+                success: function(response) {
+                    alert(response);
+                },
+                failure: function(response) {
+                    alert(response.responseText);
+                },
+                error: function(response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+        $(document).ready(function() {
+            $("#reject").click(function () {
+                var h = ($(this).attr("data-id"));
+                $.ajax({
+                    type: "POST",
+                    url: "/Register/rejected",
+                    data: {"id":h},
+                    success: function(response) { alert(response); },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                   }
+                });
+            });
+        });
+    </script>
